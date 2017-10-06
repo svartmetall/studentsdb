@@ -1,0 +1,37 @@
+/* Global Styles */
+
+/* Робимо заголовки жирними */
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+
+/* Опускаємо повідомлення на 10рх */
+.alert {
+	margin-top: 10px;
+}
+
+/* Додаємо лінію над футером */
+#footer {
+	border-top: 1px solid #dddddd;
+	padding-top: 10px;
+}
+
+/* Groups Selector */
+#group-selector {
+	margin-top: 30px;
+}
+
+#group-selector select {
+	margin: 0;
+	width: 85%;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	height: 30px;
+	line-height: 30px;
+	color: #555555;
+}
+
+/* Нижні кнопки в формі редагування */
+.custom {
+	width: 100px;
+}
