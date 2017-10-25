@@ -4,10 +4,10 @@
 {% block title %}Список Груп{% endblock title %}
 {% block content %}
 
-    <!-- Add Student Button -->
+    <!-- Add Group Button -->
     <a class="btn btn-primary" href="{% url 'groups_add' %}">Додати Групу</a>
 
-    <!-- Start Students Listing -->
+    <!-- Start Groups Listing -->
     <table class="table table-hover table-striped">
         <thead>
             <tr>
@@ -44,17 +44,6 @@
     </table>
 
     <!-- Pages Navigation -->
-    <nav>
-        <ul class="pagination">
-            <li><a href="#">&laquo;</a></li>
-            <li><a href="#">1</a></li>
-            <li class="active"><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&raquo;</a></li>
-        </ul>
-    </nav>
-    <!-- End Students Listing -->
+    {% include "students/pagination.html" %}
 
 {% endblock content %}

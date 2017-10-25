@@ -1,0 +1,41 @@
+{% extends "students/base.html" %}
+{% load static from staticfiles %}
+{% block meta_title %}Журнал{% endblock meta_title %}
+{% block title %}Облік відвідування{% endblock title %}
+{% block content %}
+
+    <center>
+        <h5>
+            <a href="">&larr;</a> Жовтень 2014 <a href="">&rarr;</a>
+        </h5>
+    </center>
+
+    <!-- Start Visits Listing -->
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>Студент</th>
+                {% for day in days %}
+                <th>{{ day }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+
+        <!-- Start Table -->
+        <tbody>
+        {% for name in journal %}
+         <tr>
+            <td>{{ forloop.counter }}</td>
+            <td><a href='{% url "students_edit" name.id %}'>{{ name.student_name }}</a></td>
+             {% for day in days %}
+             <td><input type="checkbox"></td>
+             {% endfor %}
+         </tr>
+        {% endfor %}
+        </tbody>
+        <!-- End Table -->
+    </table>
+    <!-- End Visits Listing -->
+
+{% endblock content %}
