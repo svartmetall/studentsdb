@@ -78,6 +78,8 @@
     </table>
 
     <!-- Pages Navigation -->
-    {% include "students/pagination.html" %}
+    {% with list=students url_name="home" %}
+        {% include "students/pagination.html" %}
+    {% endwith %}
 
 {% endblock content %}

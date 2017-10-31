@@ -12,30 +12,51 @@
 
     <!-- Start Visits Listing -->
     <table class="table table-bordered table-striped">
+        {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
         <thead>
             <tr>
                 <th>№</th>
-                <th>Студент</th>
+                <th>
+                    <a href="{% if not order_by %}{% url 'journal' %}?order_by=last_name&reverse=1{% else %}{% url 'journal' %}?order_by=last_name{% if order_by == 'last_name' and reverse != '1' %}&amp;reverse=1{% endif %}{% endif %}">
+                        Студент
+                        {% if order_by == 'last_name' and reverse != '1'%}&uarr;
+                        {% elif order_by == 'last_name' and reverse == '1'%}&darr;
+                        {% elif order_by == ''%}&uarr;
+                        {% endif %}
+                    </a>
+                </th>
                 {% for day in days %}
                 <th>{{ day }}</th>
                 {% endfor %}
             </tr>
         </thead>
+        {% endwith %}
 
         <!-- Start Table -->
         <tbody>
         {% for name in journal %}
          <tr>
-            <td>{{ forloop.counter }}</td>
-            <td><a href='{% url "students_edit" name.id %}'>{{ name.student_name }}</a></td>
-             {% for day in days %}
-             <td><input type="checkbox"></td>
-             {% endfor %}
+            <td>
+                {{ forloop.counter }}
+            </td>
+            <td>
+                <a href='{% url "students_edit" name.id %}'>{{ name.first_name }} {{ name.last_name }}</a>
+            </td>
+            {% for day in days %}
+            <td>
+                <input type="checkbox">
+            </td>
+            {% endfor %}
          </tr>
         {% endfor %}
         </tbody>
         <!-- End Table -->
     </table>
     <!-- End Visits Listing -->
+
+    <!-- Pages Navigation -->
+    {% with list=journal url_name="journal" %}
+        {% include "students/pagination.html" %}
+    {% endwith %}
 
 {% endblock content %}

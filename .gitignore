@@ -1,8 +1,10 @@
 *.pyc
 *~
 .idea
-db.sqlite3
 manage.py
+db.py
+db.sqlite3
+demo_data.json
 
 venv
 __pycache__

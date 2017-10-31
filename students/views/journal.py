@@ -1,18 +1,33 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import calendar
 
 
+from ..models.students import Student
+
+
 def journal_list(request):
-    journal = ({'id': 1,
-                'student_name': u'Joseph Kobzon'},
+    journal = Student.objects.all()
 
-               {'id': 2,
-                'student_name': u'Nikolay Baskov'},
+    # Try to order students list.
+    order_by = request.GET.get('order_by', 'last_name')
+    if order_by == 'last_name':
+        journal = journal.order_by(order_by)
+        if request.GET.get('reverse', '0') == '1':
+            journal = journal.reverse()
 
-               {'id': 3,
-                'student_name': u'Boris Moiseev'},)
+    # Paginator.
+    paginator = Paginator(journal, 3)
+    page = request.GET.get('page')
+    try:
+        journal = paginator.page(page)
+    except PageNotAnInteger:
+        journal = paginator.page(1)
+    except EmptyPage:
+        journal = paginator.page(paginator.num_pages)
+
     return render(request, 'students/journal.html', {'journal': journal, 'days': _days_list()})
 
 
