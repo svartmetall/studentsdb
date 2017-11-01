@@ -1,0 +1,88 @@
+{% extends "students/base.html" %}
+{% load static from staticfiles %}
+{% block meta_title %}Екзамени{% endblock meta_title %}
+{% block title %}Список Екзаменів{% endblock title %}
+{% block content %}
+
+    <!-- Add Group Button -->
+    <a class="btn btn-primary" href="{% url 'exams_add' %}">Додати Екзамен</a>
+
+    <!-- Start Groups Listing -->
+    <table class="table table-hover table-striped">
+        {% with order_by=request.GET.order_by reverse=request.GET.reverse exam_group=exam_group.title %}
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>
+                    <a href="{% if not order_by %}{% url 'exams' %}?order_by=title&reverse=1{% else %}{% url 'exams' %}?order_by=title{% if order_by == 'title' and reverse != '1' %}&amp;reverse=1{% endif %}{% endif %}">
+                        Предмет
+                        {% if order_by == 'title' and reverse != '1'%}&uarr;
+                        {% elif order_by == 'title' and reverse == '1'%}&darr;
+                        {% elif order_by == ''%}&uarr;
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="{% url 'exams' %}?order_by=date{% if order_by == 'date' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                        Дата
+                        {% if order_by == "date" and reverse != "1" %}&uarr;
+                        {% elif order_by == "date" and reverse == "1" %}&darr;
+                        {% endif %}
+                    </a>
+                </th>
+                                <th>
+                    <a href="{% url 'exams' %}?order_by=teacher{% if order_by == 'teacher' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                        Викладач
+                        {% if order_by == "teacher" and reverse != "1" %}&uarr;
+                        {% elif order_by == "teacher" and reverse == "1" %}&darr;
+                        {% endif %}
+                    </a>
+                </th>
+                                <th>
+                    <a href="{% url 'exams' %}?order_by=exam_group{% if order_by == 'exam_group' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                        Група
+                        {% if order_by == "exam_group" and reverse != "1" %}&uarr;
+                        {% elif order_by == "exam_group" and reverse == "1" %}&darr;
+                        {% endif %}
+                    </a>
+                </th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        {% endwith %}
+        <tbody>
+            {% for exam in exams %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><a href='{% url "exams_edit" exam.id %}'>
+                    {{ exam.title }}</a></td>
+                <td><a href='{% url "exams_edit" exam.id %}'>
+                    {{ exam.date }}</a></td>
+                <td><a href='{% url "exams_edit" exam.id %}'>
+                    {{ exam.teacher }}</a></td>
+                <td><a href='{% url "exams_edit" exam.id %}'>
+                    {{ exam.exam_group }}</a></td>
+                <td>
+                    <div class='btn-group'>
+                        <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
+                            Дія
+                            <span class='caret'></span>
+                        </button>
+                        <ul class='dropdown-menu' role='menu'>
+                            <li><a href='{% url "exams_edit" exam.id %}'>Редагувати</a></li>
+                            <li><a href='/journal/{{ exam.id }}'>Відвідування</a></li>
+                            <li><a href='{% url "exams_delete" exam.id %}'>Видалити</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Pages Navigation -->
+    {% with list=exams name=exams url_name="exams" %}
+        {% include "students/pagination.html" %}
+    {% endwith %}
+
+{% endblock content %}
