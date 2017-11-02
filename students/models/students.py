@@ -24,7 +24,8 @@ class Student(models.Model):
 
     birthday = models.DateField(blank=False,
                                 verbose_name=u"Дата народження",
-                                null=True)
+                                null=True,
+                                default='1889-04-20')
 
     photo = models.ImageField(blank=True,
                               verbose_name=u"Фото",

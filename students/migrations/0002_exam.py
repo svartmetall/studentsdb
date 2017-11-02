@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=256, verbose_name='Назва')),
-                ('date', models.DateField(verbose_name='Дата')),
+                ('date', models.DateField(verbose_name='Дата', default='1889-04-20')),
                 ('teacher', models.CharField(max_length=256, verbose_name='Викладач')),
                 ('exam_group', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='students.Group', verbose_name='Група')),
             ],

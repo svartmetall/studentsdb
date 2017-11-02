@@ -14,7 +14,8 @@ class Exam(models.Model):
                              verbose_name=u"Назва")
 
     date = models.DateField(verbose_name=u'Дата',
-                            blank=False)
+                            blank=False,
+                            default='1889-04-20')
 
     teacher = models.CharField(max_length=256,
                                blank=False,

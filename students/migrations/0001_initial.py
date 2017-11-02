@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
                 ('first_name', models.CharField(max_length=256, verbose_name="Ім'я")),
                 ('last_name', models.CharField(max_length=256, verbose_name='Прізвище')),
                 ('middle_name', models.CharField(blank=True, default='', max_length=256, verbose_name='По-батькові')),
-                ('birthday', models.DateField(null=True, verbose_name='Дата народження')),
+                ('birthday', models.DateField(null=True, verbose_name='Дата народження', default='1889-04-20')),
                 ('photo', models.ImageField(blank=True, null=True, upload_to='', verbose_name='Фото')),
                 ('ticket', models.CharField(max_length=256, verbose_name='Білет')),
                 ('notes', models.TextField(blank=True, verbose_name='Додаткові нотатки')),
