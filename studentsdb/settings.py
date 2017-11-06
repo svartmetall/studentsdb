@@ -13,6 +13,15 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import pymysql
 
+# Database
+# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+from .db import DATABASES
+
+# # SMTP server details
+from .db import ADMIN_EMAIL
+from .db import EMAIL_HOST_USER
+from .db import EMAIL_HOST_PASSWORD
+
 
 pymysql.install_as_MySQLdb()
 
@@ -76,11 +85,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'studentsdb.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-from .db import DATABASES
-
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -123,3 +127,8 @@ PORTAL_URL = 'http://localhost:8000'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '.', 'media')
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

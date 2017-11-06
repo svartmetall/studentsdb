@@ -12,3 +12,7 @@ DATABASES = {
         'NAME': 'students_db',
     }
 }
+
+EMAIL_HOST_USER = 'grongad'
+EMAIL_HOST_PASSWORD = 'stalin1488'
+ADMIN_EMAIL = 'grongad@gmail.com'

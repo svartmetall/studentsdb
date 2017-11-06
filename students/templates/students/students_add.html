@@ -15,7 +15,6 @@
 {% endblock status_message %}
 
 {% block content %}
-
 <form action="{% url 'students_add' %}" method='post' enctype='multipart/form-data' role='form' class='form-horizontal'>
     {% csrf_token %}
     <div class="form-group {% if errors.first_name %}has-error{% endif %}">
@@ -88,5 +87,4 @@
     </div>
 
 </form>
-
 {% endblock content %}
