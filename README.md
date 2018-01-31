@@ -1,4 +1,4 @@
-Educational projecct in Python/Django using HTML/CSS/JS/Bootstrap.
+In-progress educational Python/Django project with using HTML/CSS/JS/Bootstrap.
 
 Screenshots:
 <img src="https://images2.imgbox.com/8f/73/UqncvhzZ_o.jpg"/>
